@@ -86,7 +86,9 @@ public:
 };
 
 int main()
-{
+{       // hide console
+        ShowWindow(GetConsoleWindow(), SW_HIDE);
+	
 	Watch Watch;
 
 	if (Watch.Construct(Watch.sWidth, Watch.sHeight, 2, 2, false, true, false, false))

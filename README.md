@@ -7,10 +7,6 @@ If you need more features, take a look at its big brother - the OLC PixelGameEng
 
 https://github.com/OneLoneCoder/olcPixelGameEngine
 
-![MineSweeper](https://user-images.githubusercontent.com/17862708/212752453-e8a1c6ff-ab4f-40ba-98fd-8fa26fa24ea4.png)
-
-![watch](https://user-images.githubusercontent.com/17862708/212752460-f7d0b1eb-8af3-47ef-a346-8746b37417f5.png)
-
 As first examples, you can find some projects like :
 
 A MineSweeper game with its logical gameplay (it uses the custom font and colors),
@@ -20,3 +16,7 @@ The traditionnal Conway's Game Of Life,
 A simple widget giving time (using the windows time system),
 
 A collecting game which manages the pixel's alpha and a custom particle system.
+
+![MineSweeper](https://user-images.githubusercontent.com/17862708/212752453-e8a1c6ff-ab4f-40ba-98fd-8fa26fa24ea4.png)
+
+![watch](https://user-images.githubusercontent.com/17862708/212752460-f7d0b1eb-8af3-47ef-a346-8746b37417f5.png)

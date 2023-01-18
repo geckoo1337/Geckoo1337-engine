@@ -11,15 +11,14 @@ The traditionnal Conway's Game Of Life,
 
 A simple widget giving time (using the windows time system),
 
-A collecting game which manages the pixel's alpha and a custom particle system.
+A collecting game which manages the pixel's alpha and a custom particle system,
 
-MineSweeper Game
+An application displaying the full colors' spectrum...
+
 ![MineSweeper](https://user-images.githubusercontent.com/17862708/212752453-e8a1c6ff-ab4f-40ba-98fd-8fa26fa24ea4.png)
 
-A watch widget
 ![watch](https://user-images.githubusercontent.com/17862708/212752460-f7d0b1eb-8af3-47ef-a346-8746b37417f5.png)
 
-Full Spectrum Color
 ![HSV](https://user-images.githubusercontent.com/17862708/213251362-bd49567b-bf7d-4fd3-94e7-cfbbbfd8921d.png)
 
 --------------------------------------------------------------------------------

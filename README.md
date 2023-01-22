@@ -1,7 +1,7 @@
 # Geckoo1337-engine
 Simple Pixel Game Engine
 
-This is the template which I use often in order to create some projects during GameJam events like LudumDare. This template is really useful if you are skilled using C++ because it allows us to quickly display a prototype on screen. It has been inspired by an amazing tool which is named OLC PixelGameEngine (by Javidx9), but I changed many parts to keep only the essential, modifying some functions, adding features like a custom font, a randomizer, some algorithm to compute (non regular) polygons creation and more more more. In the end, this template is different, keeping the first spirit - maybe less sophisticated, but simple enough to control everything. Have fun ++
+This is the template which I use often in order to create some projects during GameJam events like LudumDare. This template is really useful if you are skilled using C++ because it allows us to quickly display a prototype on screen. It has been inspired by an amazing tool which is named OLC PixelGameEngine (by Javidx9), but I changed my plan doing something drastically different, modifying some functions, adding features like a custom font, a randomizer, some algorithm to compute (non regular) polygons creation and more more more. In the end, this template is good enough, keeping the first spirit - maybe less sophisticated than its big brother, but simple in order to control everything. Have fun ++
 
 As first examples, you can find some projects like :
 

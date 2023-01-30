@@ -11,7 +11,7 @@ The traditionnal Conway's Game Of Life,
 
 A simple widget giving time (using the windows time system),
 
-A collecting game which manages the pixel's alpha and a custom particle system,
+A collecting game which manages the pixel's alpha and a custom particle system (my entry for the 52nd LudumDare),
 
 An application displaying the full colors' spectrum...
 

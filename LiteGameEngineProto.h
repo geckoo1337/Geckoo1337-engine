@@ -288,10 +288,10 @@ namespace gck
 		bool		bHasMouseFocus = false;
 		bool		bFullScreen = false;	// fullscreen
 		bool		bEnableVSYNC = false;	// Vsync
-		bool        bShowCursor = true;		// visible cursor 
+		bool        	bShowCursor = true;	// visible cursor 
 		bool		bThickFrame = false;	// resize window control
 		float		fFrameTimer = 0.0f;
-		int			nFrameCount = 0;
+		int		nFrameCount = 0;
 		std::function<gck::Pixel(const int x, const int y, const gck::Pixel&, const gck::Pixel&)> funcPixelMode;
 		// keys
 		static std::map<size_t, uint8_t> mapKeys;
@@ -303,7 +303,7 @@ namespace gck
 		bool		pMouseOldState[5]{ 0 };
 		HWButton	pMouseState[5];
 		// context
-		HDC			glDeviceContext = nullptr;
+		HDC		glDeviceContext = nullptr;
 		HGLRC		glRenderContext = nullptr;
 		GLuint		glBuffer;
 		// core
@@ -458,7 +458,6 @@ namespace gck
 		t.detach(); // or join ???
 		return gck::OK; // done
 	}
-	// which sprite we want to modify
 	// which sprite we want to modify
 	void xGameEngine::SetDrawTarget(Sprite* target)
 	{
@@ -659,10 +658,10 @@ namespace gck
 	// draws a triangle according to three points
 	void xGameEngine::DrawTris(const gck::vi2d& pos1, const gck::vi2d& pos2, const gck::vi2d& pos3, const int& angle, Pixel p, bool fill)
 	{
-		const gck::vi2d centroïd = (pos1 + pos2 + pos3) / 3;
-		gck::vi2d nPos1 = rotatePoint(pos1, centroïd, static_cast<float>(angle));
-		gck::vi2d nPos2 = rotatePoint(pos2, centroïd, static_cast<float>(angle));
-		gck::vi2d nPos3 = rotatePoint(pos3, centroïd, static_cast<float>(angle));
+		const gck::vi2d centroÃ¯d = (pos1 + pos2 + pos3) / 3;
+		gck::vi2d nPos1 = rotatePoint(pos1, centroÃ¯d, static_cast<float>(angle));
+		gck::vi2d nPos2 = rotatePoint(pos2, centroÃ¯d, static_cast<float>(angle));
+		gck::vi2d nPos3 = rotatePoint(pos3, centroÃ¯d, static_cast<float>(angle));
 
 		if (fill)
 		{	// wrap the std::min/max to avoid conflict with macro in windows.h
@@ -1297,19 +1296,19 @@ namespace gck
 			return 0;
 		}
 
-		case WM_MOUSELEAVE: sge->bHasMouseFocus = false;				return 0;
-		case WM_SETFOCUS:	sge->bHasInputFocus = true;					return 0;
-		case WM_KILLFOCUS:	sge->bHasInputFocus = false;				return 0;
+		case WM_MOUSELEAVE: 	sge->bHasMouseFocus = false;			return 0;
+		case WM_SETFOCUS:	sge->bHasInputFocus = true;			return 0;
+		case WM_KILLFOCUS:	sge->bHasInputFocus = false;			return 0;
 		case WM_KEYDOWN:	sge->pKeyNewState[mapKeys[wParam]] = true;	return 0;
 		case WM_KEYUP:		sge->pKeyNewState[mapKeys[wParam]] = false;	return 0;
-		case WM_LBUTTONDOWN:sge->pMouseNewState[0] = true;				return 0;
-		case WM_LBUTTONUP:	sge->pMouseNewState[0] = false;				return 0;
-		case WM_RBUTTONDOWN:sge->pMouseNewState[1] = true;				return 0;
-		case WM_RBUTTONUP:	sge->pMouseNewState[1] = false;				return 0;
-		case WM_MBUTTONDOWN:sge->pMouseNewState[2] = true;				return 0;
-		case WM_MBUTTONUP:	sge->pMouseNewState[2] = false;				return 0;
-		case WM_CLOSE:		bAtomActive = false;						return 0;
-		case WM_DESTROY:	PostQuitMessage(0);							return 0;
+		case WM_LBUTTONDOWN:	sge->pMouseNewState[0] = true;			return 0;
+		case WM_LBUTTONUP:	sge->pMouseNewState[0] = false;			return 0;
+		case WM_RBUTTONDOWN:	sge->pMouseNewState[1] = true;			return 0;
+		case WM_RBUTTONUP:	sge->pMouseNewState[1] = false;			return 0;
+		case WM_MBUTTONDOWN:	sge->pMouseNewState[2] = true;			return 0;
+		case WM_MBUTTONUP:	sge->pMouseNewState[2] = false;			return 0;
+		case WM_CLOSE:		bAtomActive = false;				return 0;
+		case WM_DESTROY:	PostQuitMessage(0);				return 0;
 		}
 
 		return DefWindowProc(hWnd, uMsg, wParam, lParam);

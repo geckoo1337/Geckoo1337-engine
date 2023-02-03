@@ -15,7 +15,9 @@ A collecting game which manages the pixel's alpha and a custom particle system (
 
 An application displaying the full colors' spectrum,
 
-A very simple 3d projection with an icosphere...
+A very simple 3d projection with an icosphere,
+
+A classic game - Asteroid ...
 
 ![MineSweeper](https://user-images.githubusercontent.com/17862708/212752453-e8a1c6ff-ab4f-40ba-98fd-8fa26fa24ea4.png)
 

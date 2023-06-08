@@ -21,7 +21,7 @@ A very simple 3d projection with an icosphere,
 
 A classic game - Asteroid ...
 
-**All these little projects - and their template - are really useful in order to understand how works a games engine including an Update section (and buffer), delta time, actors and components, mouse/keyboard events, some OpenGL basics, 3d matrix and more more. It could be an intermediate code so as to develop your own engine more sophisticated.**
+**All these little projects - and their template - are really useful in order to understand how a games engine works including an Update section (and buffer), delta time, actors and components, mouse/keyboard events, some OpenGL basics, 3d matrix and more. It could be an intermediate code so as to develop your own engine more sophisticated.**
 
 ![MineSweeper](https://user-images.githubusercontent.com/17862708/212752453-e8a1c6ff-ab4f-40ba-98fd-8fa26fa24ea4.png)
 

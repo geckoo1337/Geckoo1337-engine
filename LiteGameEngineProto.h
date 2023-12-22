@@ -52,7 +52,7 @@ namespace gck
 	{
 		union
 		{	// opaque black pixel
-			uint32_t n = 0xFF000000;
+			uint32_t n = 0xFF000000; // ARGB
 			struct
 			{
 				uint8_t r;
@@ -217,7 +217,16 @@ namespace gck
 	public:
 		xGameEngine();
 		// defines our window
-		gck::rc Construct(uint32_t screen_w, uint32_t screen_h, uint32_t pixel_w, uint32_t pixel_h, bool fullScreen = false, bool vsync = true, bool showCursor = true, bool thickFrame = true);
+		gck::rc Construct(uint32_t screen_w, 
+						  uint32_t screen_h, 
+						  uint32_t pixel_w, 
+						  uint32_t pixel_h, 
+						  bool fullScreen = false, 
+						  bool vsync = true, 
+						  bool showCursor = true, 
+						  bool thickFrame = false, 
+						  bool fps_info = true);
+
 		gck::rc Start();
 
 		virtual bool appCreate();
@@ -264,7 +273,7 @@ namespace gck
 		void SetScreenSize(int w, int h);
 		// application name
 		std::string sAppName;
-
+		std::string sTitle;
 	private: // inner mysterious workings for window creation
 		Sprite* pDefaultDrawTarget = nullptr;
 		Sprite* pDrawTarget = nullptr;
@@ -288,8 +297,9 @@ namespace gck
 		bool		bHasMouseFocus = false;
 		bool		bFullScreen = false;	// fullscreen
 		bool		bEnableVSYNC = false;	// Vsync
-		bool        	bShowCursor = true;	// visible cursor 
+		bool        bShowCursor = true;		// visible cursor 
 		bool		bThickFrame = false;	// resize window control
+		bool		bFpsInfo = true;
 		float		fFrameTimer = 0.0f;
 		int		nFrameCount = 0;
 		std::function<gck::Pixel(const int x, const int y, const gck::Pixel&, const gck::Pixel&)> funcPixelMode;
@@ -316,7 +326,6 @@ namespace gck
 		bool gck_OpenGLCreate();
 		HWND gck_WindowCreate();
 		HWND gck_hWnd = nullptr;
-		std::wstring wsAppName;
 		static LRESULT CALLBACK gck_WindowEvent(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 	};
 
@@ -405,7 +414,7 @@ namespace gck
 		gck::XGGE::xxx = this;
 	}
 	// creates our window according to its features
-	gck::rc xGameEngine::Construct(uint32_t screen_w, uint32_t screen_h, uint32_t pixel_w, uint32_t pixel_h, bool fullScreen, bool vsync, bool showCursor, bool thickFrame)
+	gck::rc xGameEngine::Construct(uint32_t screen_w, uint32_t screen_h, uint32_t pixel_w, uint32_t pixel_h, bool fullScreen, bool vsync, bool showCursor, bool thickFrame, bool fps_info)
 	{
 		nScreenWidth = screen_w;
 		nScreenHeight = screen_h;
@@ -415,6 +424,7 @@ namespace gck
 		bEnableVSYNC = vsync;
 		bShowCursor = showCursor;
 		bThickFrame = thickFrame;
+		bFpsInfo = fps_info;
 		fPixelX = 2.0f / (float)(nScreenWidth);
 		fPixelY = 2.0f / (float)(nScreenHeight);
 		// be serious :/
@@ -1079,7 +1089,7 @@ namespace gck
 				{
 					fFrameTimer = 0.0f; // flip
 					// here you get some informations in the title bar - customize them as you want
-					std::string sTitle = sAppName + " - FPS : " + std::to_string(nFrameCount) + " ~ " + float_precision(fElapsedTime, 4);
+					bFpsInfo ? sTitle = sAppName + " - FPS : " + std::to_string(nFrameCount) + " ~ " + float_precision(fElapsedTime, 4) : sTitle = sAppName;
 					SetWindowTextA(gck_hWnd, sTitle.c_str());
 					nFrameCount = 0; // reset frame count
 				}
@@ -1295,20 +1305,32 @@ namespace gck
 			sge->gck_UpdateWindowSize(lParam & 0xFFFF, (lParam >> 16) & 0xFFFF);
 			return 0;
 		}
-
-		case WM_MOUSELEAVE: 	sge->bHasMouseFocus = false;			return 0;
-		case WM_SETFOCUS:	sge->bHasInputFocus = true;			return 0;
-		case WM_KILLFOCUS:	sge->bHasInputFocus = false;			return 0;
-		case WM_KEYDOWN:	sge->pKeyNewState[mapKeys[wParam]] = true;	return 0;
-		case WM_KEYUP:		sge->pKeyNewState[mapKeys[wParam]] = false;	return 0;
-		case WM_LBUTTONDOWN:	sge->pMouseNewState[0] = true;			return 0;
-		case WM_LBUTTONUP:	sge->pMouseNewState[0] = false;			return 0;
-		case WM_RBUTTONDOWN:	sge->pMouseNewState[1] = true;			return 0;
-		case WM_RBUTTONUP:	sge->pMouseNewState[1] = false;			return 0;
-		case WM_MBUTTONDOWN:	sge->pMouseNewState[2] = true;			return 0;
-		case WM_MBUTTONUP:	sge->pMouseNewState[2] = false;			return 0;
-		case WM_CLOSE:		bAtomActive = false;				return 0;
-		case WM_DESTROY:	PostQuitMessage(0);				return 0;
+		case WM_MOUSELEAVE:sge->bHasMouseFocus = false;
+			return 0;
+		case WM_SETFOCUS:sge->bHasInputFocus = true;
+			return 0;
+		case WM_KILLFOCUS:sge->bHasInputFocus = false;
+			return 0;
+		case WM_KEYDOWN:sge->pKeyNewState[mapKeys[wParam]] = true;
+			return 0;
+		case WM_KEYUP:sge->pKeyNewState[mapKeys[wParam]] = false;
+			return 0;
+		case WM_LBUTTONDOWN:sge->pMouseNewState[0] = true;
+			return 0;
+		case WM_LBUTTONUP:sge->pMouseNewState[0] = false;
+			return 0;
+		case WM_RBUTTONDOWN:sge->pMouseNewState[1] = true;
+			return 0;
+		case WM_RBUTTONUP:sge->pMouseNewState[1] = false;
+			return 0;
+		case WM_MBUTTONDOWN:sge->pMouseNewState[2] = true;
+			return 0;
+		case WM_MBUTTONUP:sge->pMouseNewState[2] = false;
+			return 0;
+		case WM_CLOSE:bAtomActive = false;
+			return 0;
+		case WM_DESTROY:PostQuitMessage(0);
+			return 0;
 		}
 
 		return DefWindowProc(hWnd, uMsg, wParam, lParam);
